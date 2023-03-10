@@ -1,5 +1,7 @@
 import requests
 
+USER_AGENT = 'byemc/last_fm_wrapper::byemc.xyz'
+
 class LastFM:
     def __init__(self, api_key, api_secret):
         self.api_key = api_key
