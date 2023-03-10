@@ -8,9 +8,9 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# with open('cors.allowed', 'r') as f:
-#     allowed_origins = f.read().splitlines()
-#     CORS(app = app, origins = allowed_origins)
+with open('cors.allowed', 'r') as f:
+    allowed_origins = f.read().splitlines()
+    CORS(app = app, origins = allowed_origins)
 
 
 lfm = lastfm.LastFM(os.getenv('LASTFM_API_KEY'), os.getenv('LASTFM_API_SECRET'))
