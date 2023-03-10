@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3>Recent tracks</h3>
+    <div id="recent_lfm">
+        <div class="fullw">
+            <div class="title">loading...</div>
+        </div>
+    </div>
+
+    <button onclick="updateTracks()">update</button>
+
+    <script>
+
+        let recent_lfm = document.getElementById('recent_lfm');
+        let url = 'http://localhost:5000/byeemc'
+
+        let updateTracks = () => {
+            fetch(url, { mode: 'no-cors'})
+            .then(response => JSON.stringify(response))
+            .then(data => {
+                console.log(data)
+            })
+        }
+
+    </script>
+</body>
+</html>
