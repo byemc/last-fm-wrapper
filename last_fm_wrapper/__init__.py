@@ -26,5 +26,5 @@ def getinfo(username):
     if request_type == "recent" or request_type is None:
         response = jsonify(lfm.get_user_recent_tracks(username, limit=4))
 
-    response.headers.add("Access-Control-Allow-Origin", "bye.omg.lol")
+    response.headers.add("Access-Control-Allow-Origin", "https://bye.omg.lol")
     return response
