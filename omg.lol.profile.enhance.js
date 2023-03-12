@@ -16,10 +16,11 @@ let updateTracks = () => {
 
         // first item in the list is the current track
         let currentTrack = data[0];
+        let currentTrackName;
         if (currentTrack['@attr'] && currentTrack['@attr'].nowplaying == 'true') {
-            let currentTrackName = `<i class="fa-fw fa-solid fa-play"></i> ${currentTrack.name}`;
+            currentTrackName = `<i class="fa-fw fa-solid fa-play"></i> ${currentTrack.name}`;
         } else {
-            let currentTrackName = currentTrack.name;
+            currentTrackName = currentTrack.name;
         }
         let currentTrackArtist = currentTrack.artist['#text'];
         let currentTrackImage = currentTrack.image[3]['#text'];
