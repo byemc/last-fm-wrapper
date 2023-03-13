@@ -186,10 +186,10 @@
     <script>
 
         let recent_lfm = document.getElementById('recent_lfm');
-        let url = 'https://lfm.byemc.xyz/byeemc'
+        let url = 'http://localhost:5000/byeemc'
 
         let updateTracks = () => {
-            fetch(url)
+            fetch(url, {mode: 'no-cors'})
             .then(response => response.json())
             .then(data => {
                 console.log(data)
