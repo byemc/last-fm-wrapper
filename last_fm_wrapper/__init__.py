@@ -33,6 +33,7 @@ def getinfo(username):
     ]
 
     if request.headers.get("Origin") in allowed_origins:
+        print(request.headers.get("Origin"))
         response.headers.add(
             "Access-Control-Allow-Origin", request.headers.get("Origin")
         )
