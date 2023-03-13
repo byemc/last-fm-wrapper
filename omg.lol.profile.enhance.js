@@ -11,19 +11,16 @@ let updateTracks = () => {
         // clear the div
         recent_lfm.innerHTML = '';
 
-        let current = document.createElement('div');
+        let current = document.createElement('a');
         current.classList.add('current');
 
         // first item in the list is the current track
         let currentTrack = data[0];
-        let currentTrackName;
-        if (currentTrack['@attr'] && currentTrack['@attr'].nowplaying == 'true') {
-            currentTrackName = `<i class="fa-fw fa-solid fa-play"></i> ${currentTrack.name}`;
-        } else {
-            currentTrackName = currentTrack.name;
-        }
+        let currentTrackName = `<i class="fa-fw fa-solid fa-play"></i> ${currentTrack.name}`;
         let currentTrackArtist = currentTrack.artist['#text'];
         let currentTrackImage = currentTrack.image[3]['#text'];
+
+        current.href = currentTrack.url;
 
         current.innerHTML = `<img src="${currentTrackImage}" alt=""><div class="text"><h4>${currentTrackName}</h4><p>${currentTrackArtist}</p></div>`;
 
@@ -40,8 +37,9 @@ let updateTracks = () => {
             let trackArtist = track.artist['#text'];
             let trackImage = track.image[3]['#text'];
 
-            let trackDiv = document.createElement('div');
+            let trackDiv = document.createElement('a');
             trackDiv.classList.add('track');
+            trackDiv.href = track.url;
 
             trackDiv.innerHTML = `<img src="${trackImage}" alt=""><h4>${trackName}</h4><p>${trackArtist}</p>`;
 
