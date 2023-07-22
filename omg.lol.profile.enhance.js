@@ -1,6 +1,44 @@
 let recent_lfm = document.getElementById('recent_lfm');
 let url = 'https://lfm.byemc.xyz/byeemc'
 
+let updateStatus = _ => {
+
+    let spinning = document.getElementById('spinning');
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        data = data.recenttracks.track
+
+        let icons = [
+            "<i class=\"fa-solid fa-fw fa-solid fa-spin fa-compact-disc\"></i>", // Playing
+            "<i class=\"fa-solid fa-fw fa-solid fa-xmark\"></i>", // Paused
+        ]
+
+        let current = document.createElement('a');
+        current.classList.add('current');
+
+        // first item in the list is the current track
+        let currentTrack = data[0];
+        let currentTrackName = `${currentTrack.name}`;
+        let currentTrackArtist = currentTrack.artist['#text'];
+        let currentTrackImage = currentTrack.image[3]['#text'];
+        let isNowPlaying = currentTrack['@attr'] && currentTrack['@attr'].nowplaying;
+
+        if (!isNowPlaying) {
+            spinning.innerHTML = icons[1] + ' Not currently scrobbling';
+            return;
+        }
+
+        current.href = currentTrack.url;
+
+        current.innerHTML = currentTrackName + ' — ' + currentTrackArtist;
+        
+        spinning.innerHTML = icons[0] + ' ' + currentTrackName + ' — ' + currentTrackArtist;
+    })
+}
+
 let updateTracks = () => {
     fetch(url)
     .then(response => response.json())
@@ -49,5 +87,3 @@ let updateTracks = () => {
         recent_lfm.appendChild(recent);
     })
 }
-
-document.addEventListener('DOMContentLoaded', updateTracks);
