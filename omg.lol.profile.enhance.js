@@ -1,7 +1,7 @@
 let recent_lfm = document.getElementById('recent_lfm');
 let url = 'https://lfm.byemc.xyz/byeemc';
 
-let lastrun = new Date().getTime();
+let lastrun = 0;
 
 let updateStatus = _ => {
 
@@ -35,6 +35,7 @@ let updateStatus = _ => {
 
         if (!isNowPlaying) {
             spinning.innerHTML = icons[1] + ' Not currently scrobbling';
+            lastrun = new Date().getTime();
             return;
         }
 
@@ -44,6 +45,8 @@ let updateStatus = _ => {
         
         spinning.innerHTML = icons[0] + ' ' + currentTrackName + ' — ' + currentTrackArtist;
     });
+
+    lastrun = new Date().getTime();
 }
 
 let updateTracks = () => {
