@@ -1,7 +1,14 @@
 let recent_lfm = document.getElementById('recent_lfm');
-let url = 'https://lfm.byemc.xyz/byeemc'
+let url = 'https://lfm.byemc.xyz/byeemc';
+
+let lastrun = new Date().getTime();
 
 let updateStatus = _ => {
+
+    // if last run was less than 30 seconds ago, don't run again
+    if (new Date().getTime() - lastrun < 30000) {
+        return;
+    }
 
     let spinning = document.getElementById('spinning');
 
@@ -36,7 +43,7 @@ let updateStatus = _ => {
         current.innerHTML = currentTrackName + ' — ' + currentTrackArtist;
         
         spinning.innerHTML = icons[0] + ' ' + currentTrackName + ' — ' + currentTrackArtist;
-    })
+    });
 }
 
 let updateTracks = () => {
